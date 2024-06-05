@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_3.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|solutionrelative:pr_1\\pr_3.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_5.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|solutionrelative:pr_1\\pr_5.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_4.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\PR.pyproj|solutionrelative:pr_1\\pr_4.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\pr_1.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_2.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\pr_1.pyproj|solutionrelative:pr_1\\pr_2.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\pr_1.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_1.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{51F46F30-18B9-4965-8E1A-DD9111FEA9F0}|pr_1\\pr_1.pyproj|solutionrelative:pr_1\\pr_1.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "pr_5.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_5.py",
+              "RelativeDocumentMoniker": "pr_1\\pr_5.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_5.py",
+              "RelativeToolTip": "pr_1\\pr_5.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-05-16T20:46:22.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "pr_4.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_4.py",
+              "RelativeDocumentMoniker": "pr_1\\pr_4.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_4.py",
+              "RelativeToolTip": "pr_1\\pr_4.py",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAiwHIAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-05-16T20:46:12.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "pr_3.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_3.py",
+              "RelativeDocumentMoniker": "pr_1\\pr_3.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_3.py",
+              "RelativeToolTip": "pr_1\\pr_3.py",
+              "ViewState": "AQIAAI8AAAAAAAAAAADwv6AAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-05-16T20:45:59.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pr_2.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_2.py",
+              "RelativeDocumentMoniker": "pr_1\\pr_2.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_2.py",
+              "RelativeToolTip": "pr_1\\pr_2.py",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAFwAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-05-16T20:45:34.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "pr_1.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_1.py",
+              "RelativeDocumentMoniker": "pr_1\\pr_1.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR4\\PR\\pr_1\\pr_1.py",
+              "RelativeToolTip": "pr_1\\pr_1.py",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-05-04T06:13:16.63Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
