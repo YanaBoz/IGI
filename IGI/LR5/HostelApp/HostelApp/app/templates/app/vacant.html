@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Vacant</h1>
+    {% for vac in vacancies %}
+<div>
+    <h2>{{ vac.name }}</h2>
+    <p>{{ vac.description }}</p>
+    <p>{{ vac.need }}</p>
+</div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h1>Факты о машинах</h1>
+<ul>
+    {% for fact in facts %}
+    <li>{{ fact }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

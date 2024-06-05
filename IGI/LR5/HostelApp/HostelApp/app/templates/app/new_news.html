@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>News</h1>
+    {% for new in news %}
+<div>
+    <h2>{{ new.title }}</h2>
+    <p>{{ new.content }}</p>
+    <img src="{{ new.image.url }}" height="400" width="550">
+    <p>Date: {{ new.date|date:"d.m.Y" }}&nbsp;{{ new.date|time:"H:i" }}</p>
+</div>
+    {% endfor %}
+{% endblock %}
