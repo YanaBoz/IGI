@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Reservations</h1>
+<ul>
+    {% for reservation in object_list %}  
+    <li>
+        <a href="{% url 'reservation_detail' reservation.id %}">
+            {{ reservation.client }} - {{ reservation.room }} ({{ reservation.arrival_date }} - {{ reservation.departure_date }})
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

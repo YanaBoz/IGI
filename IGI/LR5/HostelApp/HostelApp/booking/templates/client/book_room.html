@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Book a Room</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Book Now</button>
+</form>
+
+{% endblock %}

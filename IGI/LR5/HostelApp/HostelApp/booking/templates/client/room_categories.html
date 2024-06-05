@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Room Categories</h1>
+<ul>
+    {% for category in object_list %}
+    <li>
+        <a href="{% url 'room_category_detail' category.id %}">
+            {{ category.name }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "HostelApp", "HostelApp\HostelApp.pyproj", "{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {603E1C8D-159C-4E89-A5AC-AA26F2CD13E8}
+	EndGlobalSection
+EndGlobal

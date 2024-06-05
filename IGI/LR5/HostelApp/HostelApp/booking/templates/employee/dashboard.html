@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}  
+{% block content %}
+<h1>Employee Dashboard</h1>
+
+<h2>Recent Reservations</h2>
+<ul>
+    {% for reservation in reservations %}
+    <li>
+        <a href="{% url 'reservation_detail' reservation.id %}">
+            {{ reservation.client }} - {{ reservation.room }} ({{ reservation.arrival_date }} - {{ reservation.departure_date }})
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

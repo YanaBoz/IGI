@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Room {{ object.room_number }}</h1>
+<p>{{ object.description }}</p>
+<p>Category: {{ object.category.name }}</p>
+<p>Capacity: {{ object.capacity }}</p>
+<img src="{{ object.photo.url }}" height="300" width="300">
+<p></p>
+<a href="{% url 'book_room' object.id %}">Book this Room</a>
+<a href="{% url 'room_update' object.id %}">Update Room</a>
+   {% endblock %}
