@@ -1,0 +1,206 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    .content2 {
+        display: grid;
+        gap: 20px;
+        margin: 0;
+        list-style: none;
+        padding: 20px;
+    }
+
+    p, h2 {
+        margin: 0;
+    }
+
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .pagination button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            outline: 1px solid #494a4f;
+            border-radius: 1px;
+            border: none;
+        }
+
+            .pagination button.active {
+                background-color: #007bff;
+                color: white;
+            }
+
+    a {
+        color: #2196F3;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    /* Styles for news card */
+    .current {
+        background: #f7f7f7;
+        padding: 20px;
+        display: grid;
+        gap: 1em;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    }
+
+        /* Hover effect */
+        .current:hover {
+            transform: scale(1.05); /* Slight zoom-in effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adding shadow for depth */
+        }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Style for hidden settings container */
+    .settings-container {
+        display: none;
+        margin-top: 20px;
+    }
+
+        .settings-container label {
+            margin-right: 10px;
+        }
+
+        .settings-container input, .settings-container select {
+            margin-bottom: 10px;
+        }
+</style>
+
+<article class="content2">
+    <h1>News</h1>
+    <ul class="content2" id="news-list">
+        {% for new in news %}
+        <li class="current">
+            <h2>{{ new.news.title }}</h2>
+            <p>{{ new.news.content }}</p>
+            <img src="{{ new.news.image.url }}" height="400" width="550">
+            <p>Date: {{ new.news.date|date:"d.m.Y" }}&nbsp;{{ new.news.date|time:"H:i" }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Checkbox to toggle the settings panel -->
+    <label for="customize">Change text settings</label>
+    <input type="checkbox" id="customize" name="customize">
+
+    <!-- Settings panel -->
+    <div class="settings-container" id="settings-container">
+        <label for="font-size">Font Size:</label>
+        <select id="font-size">
+            <option value="12px">12px</option>
+            <option value="16px">16px</option>
+            <option value="20px">20px</option>
+            <option value="24px">24px</option>
+        </select>
+
+        <label for="text-color">Text Color:</label>
+        <input type="color" id="text-color" value="#000000">
+
+        <label for="bg-color">Background Color:</label>
+        <input type="color" id="bg-color" value="#ffffff">
+    </div>
+</article>
+
+<!-- Pagination container -->
+<div id="pagination-container" class="pagination"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const content = document.querySelector('#news-list');
+        const itemsPerPage = 2; // number of items per page
+        let currentPage = 0;
+        const items = Array.from(content.getElementsByTagName('li'));
+
+        // Function to show the selected page
+        function showPage(page) {
+            const startIndex = page * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            items.forEach((item, index) => {
+                item.classList.toggle('hidden', index < startIndex || index >= endIndex);
+            });
+            updateActiveButtonStates();
+        }
+
+        // Function to create pagination buttons
+        function createPageButtons() {
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            const paginationContainer = document.getElementById('pagination-container');
+            paginationContainer.innerHTML = ''; // Clear pagination container before adding buttons
+
+            for (let i = 0; i < totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i + 1;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    showPage(currentPage);
+                    updateActiveButtonStates();
+                });
+                paginationContainer.appendChild(pageButton);
+            }
+        }
+
+        // Function to update the active state of pagination buttons
+        function updateActiveButtonStates() {
+            const pageButtons = document.querySelectorAll('#pagination-container button');
+            pageButtons.forEach((button, index) => {
+                if (index === currentPage) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        createPageButtons(); // Create pagination buttons
+        showPage(currentPage); // Show the first page
+
+        // Font size, text color, and background color settings
+        const customizeCheckbox = document.getElementById('customize');
+        const settingsContainer = document.getElementById('settings-container');
+        const fontSizeSelect = document.getElementById('font-size');
+        const textColorInput = document.getElementById('text-color');
+        const bgColorInput = document.getElementById('bg-color');
+
+        // Toggle the visibility of the settings panel when the checkbox is clicked
+        customizeCheckbox.addEventListener('change', function () {
+            settingsContainer.style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Change font size when the user selects a new option
+        fontSizeSelect.addEventListener('change', function () {
+            // Apply font size to text within news items
+            const newsItems = document.querySelectorAll('#news-list p, #news-list h2');
+            newsItems.forEach(item => {
+                item.style.fontSize = this.value;
+            });
+        });
+
+        // Change text color when the user selects a new color
+        textColorInput.addEventListener('input', function () {
+            // Apply text color to text within news items
+            const newsItems = document.querySelectorAll('#news-list p, #news-list h2');
+            newsItems.forEach(item => {
+                item.style.color = this.value;
+            });
+        });
+
+        // Change background color when the user selects a new color
+        bgColorInput.addEventListener('input', function () {
+            // Apply background color to the body (page background)
+            document.body.style.backgroundColor = this.value;
+        });
+    });
+</script>
+
+{% endblock %}

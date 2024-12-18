@@ -1,0 +1,246 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<style>
+    div p {
+        color: black;
+        font-size: 36px;
+    }
+    p.warning {
+        color: yellow;
+    }
+
+    p {
+        color: blue;
+    }
+
+        p::selection {
+            background-color: #ffff00;
+            color: #000000;
+        }
+
+        p::first-letter {
+            font-size: 2em;
+        }
+
+        p::before {
+            content: "";
+        }
+
+        p::after {
+            content: "/";
+        }
+
+     .mark li::marker {
+        content: "\2726";
+        color: #ff0000;
+        font-size: 2em;
+    }
+
+    .here li:first-child {
+        color: #bb8dc2;
+    }
+
+    .here li:last-child {
+        font-style: italic;
+    }
+
+    .here li:nth-child(2n) {
+        background-color: lightblue;
+    }
+
+    input:focus {
+        outline: 2px solid green;
+    }
+
+    input:required {
+        outline: 2px solid red;
+    }
+
+    input:disabled {
+        opacity: 0.2;
+    }
+
+    input:valid {
+        background-color: green;
+    }
+
+    input:invalid {
+        background-color: red;
+    }
+
+    *.warning {
+        color: red;
+    }
+
+    *[lang^="en"] {
+        color: green;
+    }
+
+    .verse {
+        white-space: pre-wrap;
+    }
+
+    a[href="https://www.google.com/"] {
+        color: green;
+    }
+
+    a[href^="http://"] {
+        font-style: italic;
+    }
+
+    q[lang^="ru"] {
+        quotes: '«' '»';
+    }
+
+    q {
+        font-size: 32px;
+    }
+
+    .form-container input[type="text"],
+    .form-container select,
+    .form-container input[type="password"],
+    .form-container input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+
+    .form-container {
+        background-color: #bb8dc2;
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 3px;
+            background-color: white;
+        }
+
+            .form-container input[type="checkbox"]:checked {
+                background-color: green;
+                border-color: green;
+            }
+</style>
+<p style="font-size: 50px;">Привет</p>
+<svg width="100" height="100">
+    <circle cx="50" cy="50" r="40" fill="blue" />
+</svg>
+<div>
+    <div class="form-container">
+        <p class="warning">
+            <span lang="en-us">Хороший</span>
+            список:
+        </p>
+        <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <br />
+        <label>Email:</label>
+        <input type="email" />
+        <label>Пароль:</label>
+        <input type="password" required />
+        <label>Дата:</label>
+        <input type="date" disabled />
+        <br />
+        <label>Запомнить меня:</label>
+        <input type="checkbox" />
+    </div>
+    <p class="warning">
+        <a href="#section1">Перейти к разделу 1</a>
+    </p>
+    <p>
+        <a href="#section2">Перейти к разделу 2</a>
+    </p>
+    <iframe src="https://kvckr.me/" width="800" height="400"></iframe>
+    <h2 id="section1">Раздел 1</h2>
+    <b contenteditable="true">Какую информацию мы собираем?</b>
+    <strong>Жирный</strong>
+    <i>Курсив</i>
+    <em hidden>Курсив</em>
+    <s>чирик</s>
+    <u>подчеркивание</u>
+    <small>маленький текст</small>
+    <sub>регист ниж</sub>
+    <sup>регист вверх</sup>
+    <h2><dfn title="Наш сайт">Мы</dfn> можем собирать следующую информацию от вас:</h2>
+    <ul class=" here mark">
+        <li><h3>Личная информация: Имя, фамилия, адрес электронной почты, номер телефона, адрес проживания, данные паспорта, платежная информация.</h3></li>
+        <li><h3>Информация о бронировании: Даты заезда и выезда, тип номера, количество гостей, дополнительные услуги.</h3></li>
+        <li><h3>Информация о посещении сайта: IP-адрес, тип браузера, операционная система, время посещения, посещенные страницы.</h3></li>
+        <li><h3>Информация о взаимодействии с нами: Ваши отзывы, запросы, жалобы.</h3></li>
+    </ul>
+    <abbr title="Это первый вопрос">Привет, читатель</abbr>
+    <blockquote><h1>Как мы используем вашу информацию?</h1></blockquote>
+    <q lang="pt-br">Как мы используем вашу информацию?</q>
+    <p>Цитата:</p><q lang="ru">Как мы используем вашу информацию?</q>
+    <p>Код:<code>print("Hello, World!")</code></p>
+    <p>Программа вывела  <samp>Hello, world!</samp>.</p>
+    <p>Я хочу ввести  <kbd>Ctrl + C</kbd>, чтобы скопировать текст.</p>
+    <p>В коде переменная называется <var>myVariable</var>.</p>
+    <time datetime="2016-11-18T09:54">09:54 AM</time>
+    <div class="verse">
+        Звезды мерцают в небесной выси,<br>
+        Лунный свет струится, бледный,<br>
+        Тишина царит, как будто в нирване,<br>
+        Сердце бьется в такт ночной тишине.
+    </div>
+    <p>
+        Обычная ссылка на веб-страницу: <a href="https://www.google.com/">Google</a>
+    </p>
+
+    <p>
+        Ссылки внутри сайта, но открыть в другом окне: <a target="_blank" href="/">Вернуться</a>
+    </p>
+    {% load static %}
+    <p>
+        Ссылка на файл для скачивания: <a href="{% static 'app/document.pdf' %}" download="document.pdf">Скачать документ</a>
+    </p>
+    <ul dir="rtl">
+        <li><h3>Обработка бронирований: Для подтверждения бронирования, обработки платежей, отправки информации о вашем пребывании.</h3></li>
+        <li><h3>Предоставление услуг: Для обеспечения вашего комфортного пребывания в отеле, удовлетворения ваших потребностей.</h3></li>
+        <li><h3>Общение с вами: Для ответов на ваши запросы, отправки уведомлений о важных изменениях.</h3></li>
+        <li><h3>Улучшение наших услуг: Для анализа ваших предпочтений, совершенствования работы сайта и повышения качества услуг.</h3></li>
+        <li><h3>Маркетинговые цели: Для отправки вам рекламных материалов о наших услугах.</h3></li>
+    </ul>
+    <h1>Как мы защищаем вашу информацию?</h1>
+    <h2>Мы используем строгие меры безопасности для защиты вашей личной информации от несанкционированного доступа, использования, раскрытия, изменения или уничтожения.</h2>
+    <h1>Раскрытие информации</h1>
+    <h2>Мы можем раскрыть вашу личную информацию в следующих случаях:</h2>
+    <ul dir="ltr">
+        <li><h3>По требованию закона: Если это необходимо для соблюдения законодательных норм или судебных решений.</h3></li>
+        <li><h3>Для защиты наших прав: Если это необходимо для защиты наших прав, собственности или безопасности.</h3></li>
+        <li><h3>С вашего согласия:  Если вы дали нам свое согласие на раскрытие информации.</h3></li>
+        <li><h3>Третьим лицам: Мы можем делиться вашей информацией с третьими лицами, которые оказывают нам услуги (например, поставщикам платежных услуг).</h3></li>
+    </ul>
+    <h2 id="section2">Раздел 2</h2>
+    <h1>Ваши права</h1>
+    <h2>Вы имеете право:</h2>
+    <ul>
+        <li><h3>Доступ к вашей информации: Запросить копию вашей личной информации.</h3></li>
+        <li><h3>Исправление вашей информации: Исправить неточную или неполную информацию.</h3></li>
+        <li><h3>Удаление вашей информации: Удалить вашу информацию, если она больше не нужна.</h3></li>
+        <li><h3>Ограничение обработки:  Ограничить обработку вашей информации в определенных случаях.</h3></li>
+        <li><h3>Перенос данных: Получить вашу информацию в удобном формате.</h3></li>
+    </ul>
+    <h1>Изменения в политике конфиденциальности</h1>
+    <h3>Мы оставляем за собой право вносить изменения в эту Политику конфиденциальности в любое время. Изменения вступают в силу с момента публикации новой версии Политики конфиденциальности на Сайте. Рекомендуем регулярно проверять эту страницу, чтобы быть в курсе любых изменений.</h3>
+    <h1>Изменения:</h1>
+    {% for politic in politics %}
+    <h3>{{ politic.text }}</h3>
+    {%endfor%}
+</div>
+{% endblock %}

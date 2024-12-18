@@ -1,0 +1,267 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+
+<style>
+    .slider {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .slider-slides {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .slider-slide {
+        width: 100%;
+        height: 100%;
+    }
+
+    .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 9;
+    }
+
+    .slider-nav-btn {
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .slider-nav-btn:hover {
+            opacity: 1;
+        }
+
+    .slider-pagination {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+    }
+
+    .slider-pagination-item {
+        width: 10px;
+        height: 10px;
+        background-color: #fff;
+        border: 1px solid #000;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .slider-pagination-item.active {
+            background-color: #000;
+        }
+
+    .slider-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        color: #fff;
+        text-align: center;
+        z-index: 9;
+    }
+</style>
+
+<div class="slider">
+    <div class="slider-slides">
+        {% for new in news %}
+        {% if new.id <= 3 %}
+        <div class="slider-slide">
+            <img src="{{ new.news.image.url }}" alt="comp1">
+            <div class="slider-caption">{{ new.news.title }}</div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="slider-nav">
+        <button class="slider-nav-btn" id="prev-btn">‹</button>
+        <button class="slider-nav-btn" id="next-btn">›</button>
+    </div>
+
+    <div class="slider-pagination">
+        <button class="slider-pagination-item" data-index="0"></button>
+        <button class="slider-pagination-item" data-index="1"></button>
+        <button class="slider-pagination-item" data-index="2"></button>
+    </div>
+
+    <div class="slider-caption">
+        <span id="slide-number"></span> / <span id="max-slide-number"></span>
+    </div>
+</div>
+
+{% if user.is_superuser %}
+<form>
+    <label for="delay">Slide Interval (seconds):</label>
+    <input type="number" id="delay" min="1" value="5">
+    <br>
+    <label for="loop">Enable Looping:</label>
+    <input type="checkbox" id="loop" checked>
+    <br>
+    <label for="navs">Show Navigation Arrows:</label>
+    <input type="checkbox" id="navs" checked>
+    <br>
+    <label for="pags">Show Pagination:</label>
+    <input type="checkbox" id="pags" checked>
+    <br>
+    <label for="auto">Enable Auto-Slide:</label>
+    <input type="checkbox" id="auto" checked>
+    <br>
+    <label for="stopMouseHover">Stop Auto-Slide on Mouse Hover:</label>
+    <input type="checkbox" id="stopMouseHover">
+</form>
+{% endif %}
+
+<script>
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slider-slide');
+    const prevBtn = document.querySelector('#prev-btn');
+    const nextBtn = document.querySelector('#next-btn');
+    const pagination = document.querySelector('.slider-pagination');
+    const paginationItems = document.querySelectorAll('.slider-pagination-item');
+    const captionNumber = document.querySelector('#slide-number');
+    const captionMaxNumber = document.querySelector('#max-slide-number');
+    const delayInput = document.querySelector('#delay');
+    const loopCheckbox = document.querySelector('#loop');
+    const navsCheckbox = document.querySelector('#navs');
+    const pagsCheckbox = document.querySelector('#pags');
+    const autoCheckbox = document.querySelector('#auto');
+    const stopMouseHoverCheckbox = document.querySelector('#stopMouseHover');
+
+    let currentSlide = 0;
+    let maxSlide = slides.length - 1;
+    let isAuto = autoCheckbox.checked;
+    let intervalId = null;
+
+    const startAuto = () => {
+        if (!isAuto) return;
+
+        intervalId = setInterval(() => {
+            nextSlide();
+        }, delayInput.value * 1000 || 5000);
+    };
+
+    const stopAuto = () => {
+        clearInterval(intervalId);
+    };
+
+    const setSlideNumber = () => {
+        captionNumber.textContent = currentSlide + 1;
+        captionMaxNumber.textContent = maxSlide + 1;
+    };
+
+    const setActivePaginationItem = () => {
+        paginationItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        paginationItems[currentSlide].classList.add('active');
+    };
+
+    const goToSlide = (index) => {
+        if (index < 0) {
+            index = loopCheckbox.checked ? maxSlide : 0;
+        } else if (index > maxSlide) {
+            index = loopCheckbox.checked ? 0 : maxSlide;
+        }
+
+        slides.forEach(slide => {
+            slide.style.display = 'none';
+        });
+        slides[index].style.display = 'block';
+
+        currentSlide = index;
+        setSlideNumber();
+        setActivePaginationItem();
+    };
+
+    const nextSlide = () => {
+        goToSlide(currentSlide + 1);
+    };
+
+    const prevSlide = () => {
+        goToSlide(currentSlide - 1);
+    };
+
+    const toggleNavs = () => {
+        if (!navsCheckbox.checked) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        } else {
+            prevBtn.style.display = 'block';
+            nextBtn.style.display = 'block';
+        }
+    };
+
+    const togglePags = () => {
+        if (!pagsCheckbox.checked) {
+            pagination.style.display = 'none';
+        } else {
+            pagination.style.display = 'block';
+        }
+    };
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    paginationItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            goToSlide(index);
+        });
+    });
+
+    delayInput.addEventListener('change', () => {
+        startAuto();
+    });
+    loopCheckbox.addEventListener('change', startAuto);
+    navsCheckbox.addEventListener('change', toggleNavs);
+    pagsCheckbox.addEventListener('change', togglePags);
+    autoCheckbox.addEventListener('change', () => {
+        isAuto = autoCheckbox.checked;
+        startAuto();
+    });
+    stopMouseHoverCheckbox.addEventListener('change', () => {
+        if (stopMouseHoverCheckbox.checked) {
+            slider.addEventListener('mouseover', stopAuto);
+            slider.addEventListener('mouseout', startAuto);
+        } else {
+            slider.removeEventListener('mouseover', stopAuto);
+            slider.removeEventListener('mouseout', startAuto);
+        }
+    });
+
+    setSlideNumber();
+    setActivePaginationItem();
+    toggleNavs();
+    togglePags();
+    startAuto();
+</script>
+
+{% endblock %}

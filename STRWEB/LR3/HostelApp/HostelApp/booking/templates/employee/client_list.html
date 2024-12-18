@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1>Client List</h1>
+<ul>
+    {% if is_super %}
+    {% elif user.is_staff %}
+    {% for client in object_list %}
+    <li>
+        <a href="{% url 'client_detail' client.id %}">{{ client.first_name }} {{ client.last_name }}</a>
+    </li>
+    {% endfor %}
+    {% else %}
+    {% for client in object_list %}
+    {% if client.user == user %}
+    <li>
+        <a href="{% url 'client_detail' client.id %}">{{ client.first_name }} {{ client.last_name }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</ul>
+ {% if is_super %}
+{% elif user.is_staff %}
+<a href="{% url 'client_add' %}">Add New Client</a>
+ {% endif %}
+{% endblock %}

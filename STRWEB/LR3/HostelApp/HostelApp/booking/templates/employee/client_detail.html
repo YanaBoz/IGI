@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1>Client Details</h1>
+<p>Name: {{ client.first_name }} {{ client.last_name }} {{ client.patronymic}}</p>
+<p>Note: {{client.notes}}</p>
+{% if client.has_child %}
+<p>Have child</p>
+{%else%}
+<p>No child</p>
+{%endif%}
+<a href="{% url 'client_update' client.id %}">Edit</a>
+<a href="{% url 'client_delete' client.id %}">Delete</a>
+{% endblock %}
+

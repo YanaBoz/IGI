@@ -1,0 +1,266 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+
+<style>
+    body {
+        background-color: #f0f0f0;
+        overflow: hidden;
+    }
+
+    .scene {
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        bottom: 10%;
+        left: 40%;
+        background-color: #87ceeb;
+        overflow: hidden;
+    }
+
+    .grass {
+        position: relative;
+        top: 50%;
+        height: 200px;
+        width: 400px;
+        background-color: green;
+    }
+
+    .road {
+        position: relative;
+        left: 40%;
+        height: 200px;
+        width: 60px;
+        background-color: gray;
+    }
+
+    .man {
+        position: absolute;
+        left: 10%;
+        background-color: #000;
+        z-index: 1;
+        animation: walk 3s linear 1 forwards;
+    }
+
+    @keyframes walk {
+        0% {
+            transform: translateY(230px);
+            width: 50px;
+            height: 100px;
+        }
+
+        100% {
+            transform: translateY(0px);
+            width: 55px;
+            height: 110px;
+        }
+    }
+
+    /* Геолокация */
+    .location-info {
+        position: absolute;
+        top: 80px;
+        left: 70%;
+        transform: translateX(-50%);
+        font-size: 16px;
+        color: black;
+        opacity: 0;
+        z-index: 5;
+        animation: fade-in 3s linear 1 forwards;
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        85% {
+            opacity: 0.75;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .preloader {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+        border-radius: 50%;
+        animation: dotAnimation 1s linear infinite;
+    }
+
+    @keyframes dotAnimation {
+        0% {
+            opacity: 1;
+            transform: translateX(0) translateY(5px);
+        }
+
+        50% {
+            opacity: 0.5;
+            transform: translateX(5px) translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0) translateY(5px);
+        }
+    }
+</style>
+
+<div class="body">
+    <div class="scene">
+        <div class="tree"></div>
+        <div class="tree2"></div>
+        <div class="cloud"></div>
+        <div class="cloud2"></div>
+        <div class="cloud3"></div>
+        <div class="hotel-name">
+            Hotel-name
+        </div>
+        <div class="house">
+            <div class="house_window">
+                <div class="house_line1"></div>
+                <div class="house_line2"></div>
+            </div>
+        </div>
+        <div class="house_roof"></div>
+        <div class="grass">
+            <div class="road">
+                <div class="man"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="preloader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <h1>Enter Birth Date:</h1>
+    <form id="birthdateForm">
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" min="1900" max="2100" required>
+
+        <label for="month">Month:</label>
+        <input type="number" id="month" name="month" min="1" max="12" required>
+
+        <label for="day">Day:</label>
+        <input type="number" id="day" name="day" min="1" max="31" required>
+
+        <button type="submit">Check</button>
+    </form>
+
+    <h1>Car Search:</h1>
+    <form id="carForm">
+        <label for="make">Mark:</label>
+        <input type="text" id="make" name="make" required>
+        <button type="submit">Find</button>
+    </form>
+
+    <div id="result"></div>
+
+    <!-- Геолокация: Отображение данных -->
+    <div class="location-info" id="location-info">
+        Location: Loading...
+    </div>
+</div>
+
+<script>
+    // Геолокация
+    function showLocation(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Получаем элемент для отображения
+        const locationInfo = document.getElementById('location-info');
+        locationInfo.innerHTML = `Latitude: ${latitude.toFixed(4)}, Longitude: ${longitude.toFixed(4)}`;
+    }
+
+    function showError(error) {
+        const locationInfo = document.getElementById('location-info');
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                locationInfo.innerHTML = "User denied the request for Geolocation.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                locationInfo.innerHTML = "Location information is unavailable.";
+                break;
+            case error.TIMEOUT:
+                locationInfo.innerHTML = "The request to get user location timed out.";
+                break;
+            case error.UNKNOWN_ERROR:
+                locationInfo.innerHTML = "An unknown error occurred.";
+                break;
+        }
+    }
+
+    // Проверка наличия Geolocation API и вызов его
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(showLocation, showError);
+    } else {
+        document.getElementById('location-info').innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+    // Birthdate form with year, month, and day inputs
+    const birthdateForm = document.getElementById('birthdateForm');
+    birthdateForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const year = parseInt(document.getElementById('year').value, 10);
+        const month = parseInt(document.getElementById('month').value, 10) - 1; // Months are 0-indexed
+        const day = parseInt(document.getElementById('day').value, 10);
+
+        const birthdate = new Date(year, month, day);
+        const now = new Date();
+        let age = now.getFullYear() - birthdate.getFullYear();
+
+        // If the birthday hasn't occurred yet this year
+        if (now.getMonth() < month || (now.getMonth() === month && now.getDate() < day)) {
+            age--;
+        }
+
+        if (age >= 18) {
+            const dayOfWeek = birthdate.toLocaleDateString('default', { weekday: 'long' });
+            alert(`Birth ${dayOfWeek}.`);
+        } else {
+            alert('Call parents');
+        }
+    });
+
+    // Car search functionality
+    const carForm = document.getElementById('carForm');
+    carForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const mark = document.getElementById('make').value;
+        const cars = [
+            { mark: 'BMW', number: 'AA1111', owner: 'Ivanov' },
+            { mark: 'BMW', number: 'AA2222', owner: 'Petrov' },
+            { mark: 'Audi', number: 'BB2222', owner: 'Sidorov' }
+        ];
+
+        const foundCars = cars.filter(car => car.mark.toLowerCase() === mark.toLowerCase());
+        const resultEl = document.getElementById('result');
+        if (foundCars.length > 0) {
+            resultEl.innerHTML = foundCars.map(car =>
+                `Mark: ${car.mark}, Number: ${car.number}, Owner: ${car.owner}`).join('<br>');
+        } else {
+            resultEl.innerHTML = 'No cars found.';
+        }
+    });
+</script>
+
+{% endblock %}

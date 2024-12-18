@@ -1,0 +1,7 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>{{ object.name }}</h1>
+<p>{{ object.description }}</p>
+<p>Price: {{ object.price }}</p>
+<a href="{% url 'rooms' %}">View Rooms in this Category</a>
+{% endblock %}

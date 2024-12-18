@@ -1,0 +1,131 @@
+{% extends "app/layout.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .new {
+        column-width: 240px;
+        column-gap: 20px; /* Adds space between columns */
+    }
+
+    body {
+        font-size: 16px;
+        color: black;
+        background-color: white;
+    }
+
+    .font-size-controls--active {
+        display: none;
+    }
+
+    #click:hover {
+        cursor: pointer;
+    }
+
+    .section {
+        width: 750px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-container {
+        width: 80%;
+        opacity: 0;
+        transform: translateY(50px); /* Initial position of image */
+        transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .scroll-image {
+        height: 550px;
+        width: 550px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #pool {
+        background-color: #cce7ff; /* Light blue for pool */
+    }
+
+    #sea {
+        background-color: #66ccff; /* Ocean water color */
+    }
+
+    #palms {
+        background-color: #99cc66; /* Green for palms */
+    }
+
+    /* Controls Section Styling */
+    .font-size-controls {
+        margin-top: 20px;
+    }
+
+        .font-size-controls label {
+            margin-right: 10px;
+        }
+
+        .font-size-controls select,
+        .font-size-controls input {
+            margin-left: 10px;
+        }
+</style>
+
+<!-- Sections with Images -->
+<div class="section" id="pool">
+    <div class="image-container">
+        <img class="scroll-image" src="{% static 'app/pool.jpeg' %}" alt="Pool"/>
+    </div>
+</div>
+
+<div class="section" id="sea">
+    <div class="image-container">
+        <img class="scroll-image" src="{% static 'app/sea.jpeg' %}" alt="Sea"/>
+    </div>
+</div>
+
+<div class="section" id="palms">
+    <div class="image-container">
+        <img class="scroll-image" src="{% static 'app/palm.jpg' %}" alt="Palms"/>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.scroll-image');
+
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            images.forEach(image => {
+                const imageTop = image.getBoundingClientRect().top + window.scrollY;
+
+                if (scrollPosition > imageTop + 100) {
+                    image.parentElement.classList.add('visible');
+                } else {
+                    image.parentElement.classList.remove('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+    });
+</script>
+
+<!-- Dynamic News Content Loop -->
+{% for new in fullNews %}
+<h2>{{ new.news.title }}</h2>
+<p>{{ new.news.content }}</p>
+<img src="{{ new.news.image.url }}" height="400" width="550">
+<p>Date: {{ new.news.date|date:"d.m.Y" }}&nbsp;{{ new.news.date|time:"H:i" }}</p>
+<p class="new">{{ new.text }}</p>
+{% endfor %}
+
+{% endblock %}

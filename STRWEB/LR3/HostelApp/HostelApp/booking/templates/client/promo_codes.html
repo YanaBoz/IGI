@@ -1,0 +1,9 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Available Promo Codes</h1>
+<ul>
+    {% for promo_code in promo_codes %}
+    <li>{{ promo_code.code }} - {{ promo_code.description }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

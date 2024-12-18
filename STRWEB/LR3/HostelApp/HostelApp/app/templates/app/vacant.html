@@ -1,0 +1,58 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    .container2 {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .vacancy {
+        background-color: #f0f0f0;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+        .vacancy h2 {
+            margin-bottom: 10px;
+        }
+
+        .vacancy .description {
+            margin-bottom: 10px;
+        }
+
+        .vacancy .requirements {
+            margin-bottom: 10px;
+        }
+
+        .vacancy .duties {
+            margin-bottom: 10px;
+        }
+
+        .vacancy .apply {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+</style>
+<div class="container2">
+    <h1>Vacant</h1>
+    {% for vac in vacancies %}
+        <h2>{{ vac.name }}</h2>
+        <div class="description">
+            <p>{{ vac.description }}</p>
+        </div>
+        <div class="requirements">
+            <p>{{ vac.need }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

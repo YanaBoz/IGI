@@ -1,0 +1,10 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div>
+    {% for quest in quests %}
+    <h2>{{ quest.name }}</h2>
+    <a href="{% url 'answer' quest.id %}" class="read-more">Read More</a>
+    {%endfor%}
+</div>
+{% endblock %}

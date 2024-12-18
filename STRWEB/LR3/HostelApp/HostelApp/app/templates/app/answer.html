@@ -1,0 +1,111 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f0f0;
+        overflow: hidden;
+    }
+
+    .graph-container {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    canvas {
+        background: white;
+        border: 1px solid #ddd;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<div class="graph-container">
+    <h2>Comparison of Function and Series Expansion</h2>
+    <canvas id="myChart" width="600" height="400"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>// Function for series expansion of arcsin(x)
+    function seriesExpansion(x, nTerms) {
+        let sum = 0;
+        for (let n = 0; n < nTerms; n++) {
+            let term = (factorial(2 * n) / (Math.pow(4, n) * Math.pow(factorial(n), 2) * (2 * n + 1))) * Math.pow(x, 2 * n + 1);
+            sum += term;
+        }
+        return sum;
+    }
+
+    // Factorial function
+    function factorial(num) {
+        if (num === 0 || num === 1) return 1;
+        return num * factorial(num - 1);
+    }
+
+    // Data preparation
+    const xValues = [];
+    const seriesValues = [];
+    const mathValues = [];
+    const nTerms = 10; // Number of terms in series
+
+    for (let x = -0.9; x <= 0.9; x += 0.1) {
+        xValues.push(x.toFixed(2));
+        seriesValues.push(seriesExpansion(x, nTerms));
+        mathValues.push(Math.asin(x));
+    }
+
+    // Chart.js setup
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xValues,
+            datasets: [
+                {
+                    label: 'Series Expansion',
+                    data: seriesValues,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                {
+                    label: 'Math.asin(x)',
+                    data: mathValues,
+                    borderColor: 'red',
+                    borderDash: [5, 5],
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'x values'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Function Value'
+                    }
+                }
+            }
+        }
+    });</script>
+<div>
+    {% for quest in quests %}
+    <details>
+        <summary>{{ quest.name }}</summary>
+        {{ quest.text }}
+    </details>
+
+    {%endfor%}
+</div>
+{% endblock %}

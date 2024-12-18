@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" sizes="32x32" href="{% static 'app/ic.png' %}">
+    <title>{{ title }} - My Django Application</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 12px;
+            }
+            .content {
+                font-size: 12px;
+            }
+        }
+        @media screen and (min-width: 1000px) {
+            * {
+                font-size: 20px;
+            }
+            .content {
+                font-size: 12px;
+            }
+        }
+        @media screen and (min-width: 1400px) {
+            * {
+                font-size: 32px;
+            }
+            .content {
+                font-size: 12px;
+            }
+        }
+        @media screen and (min-height: 600px) {
+            .content {
+                font-family: sans-serif;
+            }
+        }
+        p{
+            text-indent: 2em;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        a:link {
+            color: black;
+        }
+
+        a:visited {
+            color:darkslategray;
+        }
+
+        a:hover {
+            color: powderblue;
+        }
+
+        a:active {
+            color: #4cff00;
+        }
+        nav {
+            background-color: #874f4f;
+        }
+
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+        .main15 li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            padding: 8px 16px;
+        }
+
+        .nav-horizontal li {
+            display: inline-block;
+            margin: 0 0px;
+        }
+
+        .content {
+            margin-top: 5%;
+            margin-left: 12%;
+            font-size: 12px;
+        }
+
+        .container {
+            width: 10%;
+            background-color: #874f4f;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0px 0px;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+                cursor: crosshair;
+            }
+
+            button:active {
+                background-color: #367c39;
+                cursor: grabbing;
+            }
+        .st1 {
+            margin-left: 12%;
+        }
+        .st2 {
+            top: 0;
+            width: 89.5%;
+            margin-left: 10.5%;
+            position: fixed;
+        }
+        h1, h2, h3 {
+            text-transform: uppercase;
+            font-family: 'Roboto', cursive;
+        }
+        .capital {
+            font-variant: small-caps; 
+        }
+
+        .word-spacing {
+            word-spacing: 0.2em; 
+        }
+
+        .letter-spacing {
+            letter-spacing: 0.1em; 
+        }
+
+        .hyphenate {
+            hyphens: auto;
+        }
+
+        .break-word {
+            word-break: break-word; 
+        }
+
+        .left {
+            text-align: left; 
+        }
+
+        .right {
+            text-align: right; 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav class="st2 main15">
+            <ul class="nav-horizontal">
+                <li><h1>Functions:</h1></li>
+                <li><a href="{% url 'room_categories' %}">Categories</a></li>
+                <li><a href="{% url 'rooms' %}">Rooms</a></li>
+                <li><a href="{% url 'shop' %}">Shop</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'reservations' %}">Reservations</a></li>
+                <li><a href="{% url 'client_list' %}">Clients</a></li>
+                {% endif %}
+                <li>{% include 'app/loginpartial.html' %}</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <nav class=" main15">
+            <ul>
+                <li><a href="{% url 'news' %}">News</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'vacancies' %}">Vacan</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'promo_codes' %}">Promo</a></li>
+                <li><a href="{% url 'deteil_facts' %}">Facts</a></li>
+                <li><a href="{% url 'quest' %}">Question</a></li>
+                <li><a href="{% url 'politic' %}">Politic</a></li>
+                <li><a href="{% url 'review' %}">Review</a></li>
+                <li><a href="{% url 'animate' %}">Animate</a></li>
+                <li><a href="{% url 'JAS' %}">JAS</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main class="content">
+        <!--<div class=" st1">
+        <p class=" capital word-spacing right hyphenate">Текущая дата и время (UTC): {{ current_date_utc }}</p>
+        <p class=" capital letter-spacing left break-word">Текущая дата и время ({{ user_timezone }}): {{ current_date_user_tz }}</p><button>Click me</button>
+    </div>-->
+        <button>Click me</button>
+        {% block content %}{% endblock %}
+
+        <!--<hr />-->
+        <!--<footer>
+        <p>&copy; {{ year }} - My Django Application</p>
+    </footer>-->
+    </main>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
+

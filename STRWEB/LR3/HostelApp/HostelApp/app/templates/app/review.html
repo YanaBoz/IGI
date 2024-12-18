@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Review</h1>
+<div>
+    {%for politic in politics%}
+    <div>
+        <h3>Username: {{ politic.user.username }}</h3>
+        <p>Rate: {{ politic.rate }}</p>
+        <p>{{ politic.text }}</p>
+        <p>Date: {{ politic.date }}</p>
+    </div>
+    {%endfor%}
+    <a href="{% url 'create_review' %}">Add New Review</a>
+</div>
+{% endblock %}

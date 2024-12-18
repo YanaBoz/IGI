@@ -1,0 +1,302 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+    img[src] {
+        border: 1px solid gray;
+    }
+
+    .partners {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .partner-block {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+        .partner-block img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .partner-block:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .partner-block p {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #333;
+            margin: 10px 0;
+        }
+
+    .logo {
+        width: 200px;
+        height: auto;
+    }
+
+    .logo-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 50px auto;
+        overflow: hidden;
+    }
+
+        .logo-container:hover .logo {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover .logo {
+            transform: rotate(45deg);
+        }
+
+        .logo-container:hover .logo {
+            transform: translateX(50px);
+        }
+
+        .logo-container:hover .logo {
+            transform: skewX(20deg);
+        }
+
+    .certificate {
+        width: 800px;
+        height: 600px;
+        margin: 50px auto;
+        border: 10px solid #ccc;
+        border-image: url("{% static 'app/ph1.jpg' %}") 30 round;
+        position: relative;
+        background: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        opacity: 0.6;
+        z-index: 0;
+    }
+
+        .certificate::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), #d8b1e5);
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        .certificate h1 {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .certificate h2 {
+            font-size: 32px;
+            font-weight: normal;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+
+        .certificate p {
+            font-size: 20px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+
+    .hyphenate {
+        hyphens: auto;
+    }
+
+    .break-word {
+        word-break: break-word;
+    }
+    ul {
+        list-style-type: none;
+    }
+    /*background: -webkit-linear-gradient(to bottom, #f0f0f0, #e0e0e0);*/ /* Safari 5.1 - 9.0 */
+    /*background: -o-linear-gradient(to bottom, #f0f0f0, #e0e0e0);*/ /* Opera 11.1 - 12.0 */
+    /*background: -moz-linear-gradient(to bottom, #f0f0f0, #e0e0e0);*/ /* Firefox 3.6 - 15 */
+    /*background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);*/
+    table {
+        width: 80%; /* Adjust table width as needed */
+        margin: 20px auto; /* Center table on page  https://kvckr.me/ */
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: #f2f2f2; /* Light grey background for header */
+        text-align: left;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    td {
+        text-align: center; /* Center text in cells */
+        padding: 5px;
+        border: 1px solid black;
+    }
+
+        td:empty { /* Style empty cells */
+            background-color: #eee; /* Light grey background */
+        }
+
+    tbody tr:nth-child(odd) {
+        background-color: #f2f2f2; /* Alternate row colors */
+    }
+
+    .text-left {
+        text-align: left; /* Align text left */
+    }
+</style>
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+{% for about in abouts %}
+<p>About our company: {{about.description}}</p>
+<div class="logo-container">
+    <img src=" {{about.image.url}}" class="logo" alt=" logo">
+</div>
+<p>Video:</p>
+<video height="180" width="180" controls>
+    <source src=" {{about.video.url}}" type="video/mp4">
+</video>
+<p>History:{{about.history}}</p>
+<ul>
+    <li>
+        <h2>1950:</h2>
+        <p>
+            Opening of a small family hotel "Hotelapp" in a quiet resort town.
+            Cozy atmosphere, friendly staff, emphasis on simplicity and hospitality.
+            It offers standard rooms and a limited range of services.
+        </p>
+    </li>
+    <li>
+        <h2>1970:</h2>
+        <p>
+            The expansion of the hotel, the addition of several floors and new rooms.
+            The introduction of new services such as a restaurant and a swimming pool.
+            Increasing popularity among family tourists.
+        </p>
+    </li>
+    <li>
+        <h2>1990:</h2>
+        <p>
+            Renovation of the hotel design, introduction of modern technologies.
+            Introduction of a telephone and fax booking system.
+            The emergence of an online website offering online booking.
+        </p>
+    </li>
+    <li>
+        <h2>2000:</h2>
+        <p>
+            Rebranding, new logo and website, focus on technology.
+            The introduction of the "Hotelapp" system, which allows guests to manage room comfort using a mobile application.
+            Integration with popular online booking platforms.
+        </p>
+    </li>
+    <li>
+        <h2>2010:</h2>
+        <p>
+            The development of the concept of a "smart hotel" using IoT technologies.
+            The introduction of a facial recognition system for entering the hotel and rooms.
+            The introduction of robotic services such as luggage delivery and room service.
+        </p>
+    </li>
+    <li>
+        <h2>2020:</h2>
+        <p>
+            Fully automated guest service process: from online booking to check out of the hotel.
+            A personalized approach to each guest, using data on preferences and booking history.
+            The introduction of virtual reality for viewing rooms and other hotel facilities.
+        </p>
+    </li>
+    <li>
+        <h2>2030:</h2>
+        <p>
+            The Hotelapp hotel is becoming a network of "smart hotels" with a unique digital experience for guests.
+            The introduction of biometric technologies to improve safety and comfort.
+            Integration with the ecosystem of urban services, providing guests with access to transportation, restaurants, shops and entertainment.
+        </p>
+    </li>
+    <li>
+        <h2>2040:</h2>
+        <p>
+            Hotelapp is turning into an autonomous travel platform offering comprehensive solutions for tourists, from booking to route planning and leisure activities.
+            Using artificial intelligence to create a personalized travel experience.
+        </p>
+    </li>
+    </ul>
+        <ul>
+            <li>Name: HotelApp</li>
+            <li>Adress: 123 Main Street, Suite 456, Anytown, CA 12345, USA</li>
+            <li>Phone: +1 (555) 555-5555</li>
+            <li>Email: info@hotelapp.com</li>
+            <li>Web-site:www.hotelapp.com </li>
+            <li>Bank details:</li>
+            <li>Bank name: Anytown Bank</li>
+            <li>Account number: 1234567890 SWIFT code</li>
+            <li>SWIFT code: ABCTUS33</li>
+            <li>IBAN: US12345678901234567890</li>
+        </ul>
+        <p>Certificate:</p>
+        <div class="certificate">
+            <h1>Certificate</h1>
+            <h2>Name:</h2>
+            <h1 contenteditable="true">*Name*</h1>
+            <p contenteditable="true">*Discription*</p>
+        </div>
+        <div class="partners">
+            <div class="partner-block">
+                <p>IKEA</p>
+                <img src="{% static 'app/logo.jpeg' %}" alt="comp1" style="border-radius: 50%;">
+            </div>
+
+            <div class="partner-block">
+                <p>Visa</p>
+                <img src="{% static 'app/logo1.jpg' %}" alt="comp2" style="border-radius: 50%;">
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="border:1px solid black"></th>
+                    <th style="border:1px solid black" colspan="2" class="text-left">aghhfhd</th>
+                    <th style="border:1px solid black" colspan="2" class="text-left">gd</th>
+                    <th style="border:1px solid black" colspan="2" class="text-left">zfsdsghd</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border:1px solid black">Hi</td>
+                    <td style="border:1px solid black">I'm</td>
+                    <td style="border:1px solid black">Code</td>
+                    <td style="border:1px solid black">12</td>
+                    <td style="border:1px solid black">15</td>
+                    <td style="border:1px solid black">549.65</td>
+                    <td style="border:1px solid black">arsetrgdh</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+        {% endblock %}

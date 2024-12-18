@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}  # Assuming you have a base template
+{% block content %}
+<h1>Reservation Confirmation</h1>
+
+<p>Your reservation has been confirmed!</p>
+<p>Reservation ID: {{ reservation.id }}</p>
+<p>Room: {{ reservation.room }}</p>
+<p>Arrival Date: {{ reservation.arrival_date }}</p>
+<p>Departure Date: {{ reservation.departure_date }}</p>
+<p>Final Price: {{ reservation.final_price }}</p>
+{% if reservation.promo_code %}
+<p>Promo Code Applied: {{ reservation.promo_code }}</p>
+{% endif %}
+{% endblock %}

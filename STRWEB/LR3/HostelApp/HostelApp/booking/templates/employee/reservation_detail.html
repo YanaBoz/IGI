@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h1>Reservation Detail</h1>
+
+<p>Client: {{ object.client.str }}</p>
+<p>Room: {{ object.room.category.name }} - {{ object.room.room_number }}</p>
+<p>Arrival Date: {{ object.arrival_date }}</p>
+<p>Departure Date: {{ object.departure_date }}</p>
+<p>Final Price: {{ object.final_price }}</p>
+<p>Notes: {{ object.notes }}</p>
+<a href="{% url 'reservation_update' object.id %}">Update Reservation</a>
+{% endblock %}

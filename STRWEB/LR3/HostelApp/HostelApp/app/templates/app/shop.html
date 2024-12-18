@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+    {% block content %}
+<style>
+    .catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 20px; 
+    }
+
+    .item {
+        border: 1px solid #ccc;
+        padding: 20px;
+        text-align: center;
+    }
+
+        .item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .item h3 {
+            margin-top: 10px;
+        }
+
+        .item p {
+            margin-top: 5px;
+        }
+
+        .item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .item:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+</style>
+    {% for service in services %}
+<div class="item">
+    <h2>{{ service.name }}</h2>
+    <p>{{ service.description }} - {{ service.price }} <img src="{{ service.image.url }}" height="40" width="55"> ---- <a href="{% url 'add_to_cart' service.id %}">Buy</a></p> 
+    <br />
+</div>
+    {% endfor %}
+{% endblock %}

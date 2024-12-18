@@ -1,0 +1,291 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        border-width: 1px 1px 0;
+        background-color: #f7f7f7;
+        cursor: pointer;
+    }
+
+    .content2 {
+        margin: 20px;
+    }
+
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .pagination button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            outline: 1px solid #494a4f;
+            border-radius: 1px;
+            border: none;
+        }
+
+    .hidden {
+        display: none;
+    }
+
+    .pagination button.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+    label {
+        display: block;
+        margin-bottom: .5em;
+    }
+
+    .preloader {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #333;
+        border-radius: 50%;
+        animation: dotAnimation 1s linear infinite;
+        display: none;
+    }
+
+    @keyframes dotAnimation {
+        0% {
+            opacity: 1;
+            transform: translateX(0) translateY(5px);
+        }
+
+        50% {
+            opacity: 0.5;
+            transform: translateX(5px) translateY(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0) translateY(5px);
+        }
+    }
+
+    .error {
+        border: 1px solid red;
+        background-color: #fdd;
+    }
+
+    .valid {
+        border: 1px solid green;
+        background-color: #dfffd6;
+    }
+
+    .reward-text {
+        margin-top: 20px;
+        font-weight: bold;
+    }
+</style>
+
+<h1>Contacts</h1>
+
+<div class="preloader">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+
+<button id="addContactBtn">Добавить</button>
+
+<div id="addContactForm" style="display: none;">
+    <form id="average">
+        <label>Фото: <input name="photo" id="photo" type="file" required /></label>
+        <label>Должность: <input name="job" id="job" type="text" required /></label>
+        <label>Телефон: <input name="telephone" id="telephone" type="text" required /></label>
+        <label>Email: <input name="email" id="email" type="email" required /></label>
+        <input type="submit" value="Добавить в таблицу" id="submitBtn">
+    </form>
+    <div id="validationMessage"></div>
+</div>
+
+<input type="text" id="searchInput" placeholder="Поиск...">
+<table id="myTable" class="table_sort">
+    <thead>
+        <tr>
+            <th>Фото</th>
+            <th>Должность</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th><input type="checkbox" id="select-all" /></th>
+        </tr>
+    </thead>
+    <tbody id="dest">
+        {% for employee in employees %}
+        <tr>
+            <td><img src="{{ employee.contact.photo.url }}" alt="[smile]" height="100" width="100"></td>
+            <td>{{ employee.contact.description }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.email }}</td>
+            <td><input type="checkbox" class="select-checkbox" /></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination"></div>
+<div id="rewardMessage"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleLoader = (show) => {
+            const preloader = document.querySelector('.preloader');
+            preloader.style.display = show ? 'flex' : 'none';
+        };
+
+        // 1. Сортировка по столбцам
+        let sortOrder = -1;  // 1 - по возрастанию, -1 - по убыванию
+
+        document.querySelectorAll('.table_sort th').forEach((th, index) => {
+            th.addEventListener('click', () => {
+                const rows = Array.from(document.querySelectorAll('#myTable tbody tr'));
+                const isNumeric = index === 3 || index === 4;  // Телефон и Email можно сортировать как строки
+
+                rows.sort((a, b) => {
+                    const aText = a.children[index].textContent.trim();
+                    const bText = b.children[index].textContent.trim();
+
+                    return (aText > bText ? 1 : (aText < bText ? -1 : 0)) * sortOrder;
+                });
+
+                document.querySelector('#myTable tbody').append(...rows);
+
+                sortOrder *= -1;
+                th.classList.toggle('sorted', sortOrder === 1);
+            });
+        });
+
+        // 2. Пагинация
+        const itemsPerPage = 3;
+        let currentPage = 0;
+        const items = Array.from(document.querySelectorAll('#myTable tbody tr'));
+        const paginationContainer = document.querySelector('.pagination');
+
+        function createPagination() {
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            paginationContainer.innerHTML = '';
+
+            for (let i = 0; i < totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i + 1;
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    displayPage(currentPage);
+                });
+                paginationContainer.appendChild(button);
+            }
+        }
+
+        function displayPage(page) {
+            const startIndex = page * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            items.forEach((item, index) => {
+                item.style.display = index >= startIndex && index < endIndex ? '' : 'none';
+            });
+        }
+
+        createPagination();
+        displayPage(currentPage);
+
+        // 3. Фильтрация
+        document.getElementById('searchInput').addEventListener('keyup', () => {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            items.forEach(item => {
+                const rowText = item.textContent.toLowerCase();
+                item.style.display = rowText.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // 4. Клик по строке для отображения информации
+        document.querySelectorAll('#myTable tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                const job = row.children[1].textContent;
+                const phone = row.children[2].textContent;
+                const email = row.children[3].textContent;
+                alert(`Должность: ${job}\nТелефон: ${phone}\nEmail: ${email}`);
+            });
+        });
+
+        // 5. Форма добавления данных
+        document.getElementById('addContactBtn').addEventListener('click', () => {
+            document.getElementById('addContactForm').style.display = 'block';
+        });
+
+        // 6. Валидация URL и номера телефона
+        const phoneRegex = /^(?:\+375|8)\s?(\(?\d{3}\)?\s?\d{3}[-\s]?\d{2}[-\s]?\d{2})$/;
+        const urlRegex = /^https?:\/\/.*\.(php|html)$/;
+
+        document.getElementById('telephone').addEventListener('input', () => {
+            const phoneValid = phoneRegex.test(document.getElementById('telephone').value);
+            document.getElementById('telephone').classList.toggle('error', !phoneValid);
+            document.getElementById('telephone').classList.toggle('valid', phoneValid);
+        });
+
+        document.getElementById('email').addEventListener('input', () => {
+            const urlValid = urlRegex.test(document.getElementById('email').value);
+            document.getElementById('email').classList.toggle('error', !urlValid);
+            document.getElementById('email').classList.toggle('valid', urlValid);
+        });
+
+        // 7. Добавление строки в таблицу
+        document.getElementById('average').addEventListener('submit', (event) => {
+            event.preventDefault();
+            toggleLoader(true);
+
+            const job = document.getElementById('job').value;
+            const phone = document.getElementById('telephone').value;
+            const email = document.getElementById('email').value;
+            const photo = document.getElementById('photo').files[0] ? document.getElementById('photo').files[0].name : '';
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><img src="${photo}" alt="Фото" height="100" width="100"></td>
+                <td>${job}</td>
+                <td>${phone}</td>
+                <td>${email}</td>
+                <td><input type="checkbox" class="select-checkbox" /></td>
+            `;
+
+            document.querySelector('#myTable tbody').appendChild(row);
+
+            toggleLoader(false);
+        });
+
+        // 8. Премирование сотрудников
+        document.getElementById('select-all').addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.select-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = document.getElementById('select-all').checked);
+        });
+
+        document.getElementById('rewardButton').addEventListener('click', () => {
+            const selectedNames = Array.from(document.querySelectorAll('.select-checkbox:checked')).map(checkbox => checkbox.closest('tr').children[1].textContent);
+            document.getElementById('rewardMessage').textContent = `Премированы: ${selectedNames.join(', ')}`;
+        });
+    });
+</script>
+{% endblock %}

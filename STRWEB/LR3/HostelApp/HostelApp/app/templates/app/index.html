@@ -1,0 +1,119 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style>
+    .timer__items {
+        display: flex;
+        font-size: 48px;
+    }
+
+    .timer__item {
+        position: relative;
+        min-width: 60px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 15px;
+        text-align: center;
+    }
+
+        .timer__item::before {
+            content: attr(data-title);
+            display: block;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .timer__item:not(:last-child)::after {
+            content: ':';
+            position: absolute;
+            right: -15px;
+        }
+</style>
+<div class="timer">
+    <div class="timer__items">
+        <div id="day" class="timer__item timer__days">00</div>
+        <div id="hour" class="timer__item timer__hours">00</div>
+        <div id="min" class="timer__item timer__minutes">00</div>
+        <div id="sec" class="timer__item timer__seconds">00</div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentTime = new Date();
+
+        // Check if there's a saved deadline in localStorage
+        let savedDeadline = localStorage.getItem('deadline');
+        if (!savedDeadline) {
+            // If no saved deadline, set a new one (1 hour from now)
+            savedDeadline = currentTime.getTime() + 60 * 60 * 1000; // 1 hour
+            localStorage.setItem('deadline', savedDeadline);
+        }
+
+        const deadline = new Date(parseInt(savedDeadline)); // Convert the string back to a date
+        let timerId = null;
+
+        // Function for declension of time units
+        function declensionNum(num, words) {
+            return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+        }
+
+        // Main countdown function
+        function countdownTimer() {
+            const diff = deadline - new Date();
+            if (diff <= 0) {
+                clearInterval(timerId);
+                localStorage.removeItem('deadline'); // Remove the saved deadline after the timer ends
+            }
+            const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
+            const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
+            const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+            const seconds = diff > 0 ? Math.floor(diff / 1000) % 60 : 0;
+
+            // Update the displayed time
+            $days.textContent = days < 10 ? '0' + days : days;
+            $hours.textContent = hours < 10 ? '0' + hours : hours;
+            $minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+            $seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+            // Update the titles for declensions
+            $days.dataset.title = declensionNum(days, ['day', 'days', 'days']);
+            $hours.dataset.title = declensionNum(hours, ['hour', 'hours', 'hours']);
+            $minutes.dataset.title = declensionNum(minutes, ['minute', 'minutes', 'minutes']);
+            $seconds.dataset.title = declensionNum(seconds, ['second', 'seconds', 'seconds']);
+        }
+
+        // Select elements for displaying the time
+        const $days = document.querySelector('.timer__days');
+        const $hours = document.querySelector('.timer__hours');
+        const $minutes = document.querySelector('.timer__minutes');
+        const $seconds = document.querySelector('.timer__seconds');
+
+        // Initialize the countdown timer
+        countdownTimer();
+        timerId = setInterval(countdownTimer, 1000);
+    });
+</script>
+
+<style>
+    .article-info {
+        position: absolute;
+        background-color: #dcc0c0;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="article-info">
+    <h2>{{ latest_article.news.title }}</h2>
+    <p>{{ latest_article.news.content }}</p>
+    <p>Date: {{ latest_article.news.date|date:"d.m.Y" }}&nbsp;{{ latest_article.news.date|time:"H:i" }}</p>
+    <img src="{{ latest_article.news.image.url }}" height="400" width="550">
+    <details>
+        <summary>Read...</summary>
+        <p>{{latest_article.text}}</p>
+    </details>
+</div>
+{% endblock %}

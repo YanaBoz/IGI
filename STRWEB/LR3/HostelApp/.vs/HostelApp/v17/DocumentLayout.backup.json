@@ -1,0 +1,164 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\new_news.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\new_news.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\fullNews.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\fullNews.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\views.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\answer.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\answer.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\animat.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\templates\\app\\animat.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\models.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C7F0A7B7-5EB5-4411-BD2E-8CF939F73B0D}|HostelApp\\HostelApp.pyproj|solutionrelative:HostelApp\\app\\models.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:210250908:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "about.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\about.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\about.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\about.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\about.html",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAFEAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T16:20:37.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "index.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\index.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\index.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\index.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T16:20:34.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "fullNews.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\fullNews.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\fullNews.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\fullNews.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\fullNews.html",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAABgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T16:02:56.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "answer.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\answer.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\answer.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\answer.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\answer.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAQwGQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T16:00:27.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "animat.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\animat.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\animat.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\animat.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\animat.html",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAkwPQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T15:43:14.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "models.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\models.py",
+              "RelativeDocumentMoniker": "HostelApp\\app\\models.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\models.py",
+              "RelativeToolTip": "HostelApp\\app\\models.py",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-12-17T15:25:46.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "views.py",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\views.py",
+              "RelativeDocumentMoniker": "HostelApp\\app\\views.py",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\views.py",
+              "RelativeToolTip": "HostelApp\\app\\views.py",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAmwKcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2024-12-17T15:25:23.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "new_news.html",
+              "DocumentMoniker": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\new_news.html",
+              "RelativeDocumentMoniker": "HostelApp\\app\\templates\\app\\new_news.html",
+              "ToolTip": "V:\\253504_BOZHKO_2\\IGI\\LR5\\HostelApp\\HostelApp\\app\\templates\\app\\new_news.html",
+              "RelativeToolTip": "HostelApp\\app\\templates\\app\\new_news.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAkwCAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-12-17T15:25:19.796Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
